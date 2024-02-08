@@ -1,5 +1,12 @@
-import apikey
+from openai import OpenAI
+client = OpenAI()
 
-key = apikey.key
+completion = client.chat.completions.create(
+  model="gpt-4-0125-preview",
+  messages=[
+    {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
+    {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}
+  ]
+)
 
-print(key)
+print(completion.choices[0].message)
